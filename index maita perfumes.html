@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfumes Elegantes</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        :root { --dorado: #d4af37; --oscuro: #1a1a2e; --claro: #f8f9fa; }
+        body { background: #fefefe; color: #333; }
+        
+        nav { background: var(--oscuro); padding: 1rem; position: sticky; top: 0; z-index: 100; }
+        nav h1 { color: var(--dorado); display: inline-block; font-size: 1.4rem; }
+        nav ul { list-style: none; float: right; margin-top: 0.3rem; }
+        nav ul li { display: inline; margin-left: 2rem; }
+        nav ul li a { color: white; text-decoration: none; font-weight: bold; }
+        nav ul li a:hover { color: var(--dorado); }
+        
+        section { padding: 3rem 5%; }
+        .oculto { display: none; }
+        
+        #inicio { background: linear-gradient(rgba(26,26,46,0.8), rgba(26,26,46,0.8)), url(imagen inicio.jpg); background-size: cover; color: white; text-align: center; padding: 6rem 5%; }
+        #inicio h2 { font-size: 2.5rem; margin-bottom: 1rem; color: var(--dorado); }
+        #inicio p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; }
+        
+        .titulo-seccion { text-align: center; font-size: 2rem; color: var(--oscuro); margin-bottom: 2.5rem; border-bottom: 3px solid var(--dorado); display: inline-block; padding-bottom: 0.5rem; margin-left: 50%; transform: translateX(-50%); }
+        .grid-productos { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .tarjeta { border: 1px solid #eee; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.08); transition: transform 0.3s; background: white; }
+        .tarjeta:hover { transform: translateY(-5px); }
+        .tarjeta img { width: 100%; height: 280px; object-fit: cover; background: #f5f5f5; }
+        .tarjeta .info { padding: 1.2rem; }
+        .tarjeta h3 { color: var(--oscuro); margin-bottom: 0.5rem; }
+        .precio { font-size: 1.3rem; font-weight: bold; color: var(--dorado); margin: 0.8rem 0; }
+        .btn { background: var(--dorado); color: white; border: none; padding: 0.7rem 1.2rem; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; font-size: 1rem; }
+        .btn:hover { background: #b8860b; }
+        
+        #pedidos { background: #f9f6f0; }
+        form { max-width: 600px; margin: 0 auto; background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        label { display: block; margin: 1rem 0 0.4rem; font-weight: bold; color: var(--oscuro); }
+        input, textarea { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 6px; font-size: 1rem; }
+        textarea { min-height: 120px; resize: vertical; }
+        #mensaje-confirmacion { margin-top: 1.5rem; padding: 1rem; background: #d4edda; color: #155724; border-radius: 6px; display: none; text-align: center; font-weight: bold; }
+        .ayuda { font-size: 0.9rem; color: #666; margin-top: 0.3rem; }
+        
+        footer { background: var(--oscuro); color: white; text-align: center; padding: 1.5rem; margin-top: 2rem; }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>✨ Perfumes Elegantes</h1>
+        <ul>
+            <li><a href="#" onclick="mostrarSeccion('inicio')">Inicio</a></li>
+            <li><a href="#" onclick="mostrarSeccion('productos')">Productos</a></li>
+            <li><a href="#" onclick="mostrarSeccion('pedidos')">Pedidos</a></li>
+        </ul>
+    </nav>
+
+    <section id="inicio">
+        <h2>El aroma que te define</h2>
+        <p>Elige tus fragancias y escríbenos libremente lo que desees pedir. Envíos a toda Bolivia 🇧🇴</p>
+    </section>
+
+    <section id="productos" class="oculto">
+        <h2 class="titulo-seccion">Nuestros Perfumes</h2>
+        <div class="grid-productos">
+            <div class="tarjeta">
+                <img src="perfume floral y ambar.jpg" alt="Perfume">
+                <div class="info">
+                    <h3>Esencia Real</h3>
+                    <p>Florales y ámbar</p>
+                    <p class="precio">Bs. 190</p>
+                    <button class="btn" onclick="agregarAlTexto('Esencia Real - Bs. 190')">Agregar al pedido</button>
+                </div>
+            </div>
+            <div class="tarjeta">
+                <img src="" alt="Perfume vainilla y sandalo.jpg">
+                <div class="info">
+                    <h3>Noche de Estrellas</h3>
+                    <p>Vainilla y sándalo</p>
+                    <p class="precio">Bs. 210</p>
+                    <button class="btn" onclick="agregarAlTexto('Noche de Estrellas - Bs. 210')">Agregar al pedido</button>
+                </div>
+            </div>
+            <div class="tarjeta">
+                <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400" alt="Perfume">
+                <div class="info">
+                    <h3>Fresco Amanecer</h3>
+                    <p>Cítricos y agua</p>
+                    <p class="precio">Bs. 165</p>
+                    <button class="btn" onclick="agregarAlTexto('Fresco Amanecer - Bs. 165')">Agregar al pedido</button>
+                </div>
+            </div>
+            <div class="tarjeta">
+                <img src="https://images.unsplash.com/photo-1543565226-085875940a49?w=400" alt="Perfume">
+                <div class="info">
+                    <h3>Pasión Negra</h3>
+                    <p>Especiada y misteriosa</p>
+                    <p class="precio">Bs. 230</p>
+                    <button class="btn" onclick="agregarAlTexto('Pasión Negra - Bs. 230')">Agregar al pedido</button>
+                </div>
+            </div>
+            <div class="tarjeta">
+                <img src="https://images.unsplash.com/photo-1523398002811-999ca8dec234?w=400" alt="Perfume">
+                <div class="info">
+                    <h3>Flor de Loto</h3>
+                    <p>Suave y delicada</p>
+                    <p class="precio">Bs. 180</p>
+                    <button class="btn" onclick="agregarAlTexto('Flor de Loto - Bs. 180')">Agregar al pedido</button>
+                </div>
+            </div>
+            <div class="tarjeta">
+                <img src="https://images.unsplash.com/photo-1555421468-8a090c19d212?w=400" alt="Perfume">
+                <div class="info">
+                    <h3>Madera y Piel</h3>
+                    <p>Amaderada y sofisticada</p>
+                    <p class="precio">Bs. 225</p>
+                    <button class="btn" onclick="agregarAlTexto('Madera y Piel - Bs. 225')">Agregar al pedido</button>
+                </div>
+            </div>
+            <div class="tarjeta">
+                <img src="https://images.unsplash.com/photo-1547904891-1554b2c6b7e4?w=400" alt="Perfume">
+                <div class="info">
+                    <h3>Brillo de Luna</h3>
+                    <p>Rosas y jazmín</p>
+                    <p class="precio">Bs. 195</p>
+                    <button class="btn" onclick="agregarAlTexto('Brillo de Luna - Bs. 195')">Agregar al pedido</button>
+                </div>
+            </div>
+            <div class="tarjeta">
+                <img src="https://images.unsplash.com/photo-1592940832136-75921f4b4a8c?w=400" alt="Perfume">
+                <div class="info">
+                    <h3>Aire Puro</h3>
+                    <p>Verde y natural</p>
+                    <p class="precio">Bs. 155</p>
+                    <button class="btn" onclick="agregarAlTexto('Aire Puro - Bs. 155')">Agregar al pedido</button>
+                </div>
+            </div>
+            <div class="tarjeta">
+                <img src="https://images.unsplash.com/photo-1560023907-5f33981b9543?w=400" alt="Perfume">
+                <div class="info">
+                    <h3>Oro Sublime</h3>
+                    <p>Canela y ámbar</p>
+                    <p class="precio">Bs. 250</p>
+                    <button class="btn" onclick="agregarAlTexto('Oro Sublime - Bs. 250')">Agregar al pedido</button>
+                </div>
+            </div>
+            <div class="tarjeta">
+                <img src="https://images.unsplash.com/photo-1570339244158-9f34dcf7594b?w=400" alt="Perfume">
+                <div class="info">
+                    <h3>Mar Profundo</h3>
+                    <p>Acua y marina</p>
+                    <p class="precio">Bs. 175</p>
+                    <button class="btn" onclick="agregarAlTexto('Mar Profundo - Bs. 175')">Agregar al pedido</button>
+                </div>
+            </div>
+            <div class="tarjeta">
+                <img src="https://images.unsplash.com/photo-1584399734795-201ed809c7d4?w=400" alt="Perfume">
+                <div class="info">
+                    <h3>Frutos del Paraíso</h3>
+                    <p>Cítricos y frutas</p>
+                    <p class="precio">Bs. 160</p>
+                    <button class="btn" onclick="agregarAlTexto('Frutos del Paraíso - Bs. 160')">Agregar al pedido</button>
+                </div>
+            </div>
+            <div class="tarjeta">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400" alt="Perfume">
+                <div class="info">
+                    <h3>Encanto Eterno</h3>
+                    <p>Floral y almizclada</p>
+                    <p class="precio">Bs. 200</p>
+                    <button class="btn" onclick="agregarAlTexto('Encanto Eterno - Bs. 200')">Agregar al pedido</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pedidos" class="oculto">
+        <h2 class="titulo-seccion">Tu Pedido</h2>
+        <form id="form-pedido">
+            <label>📝 ¿Qué deseas pedir?</label>
+            <textarea id="detalle-pedido" placeholder="Escribe aquí los perfumes, cantidades, o cualquier detalle...&#10;Ejemplo:&#10;2 x Noche de Estrellas&#10;1 x Esencia Real&#10;Entregar el fin de semana"></textarea>
+            <p class="ayuda">💡 También puedes presionar "Agregar al pedido" en la sección de Productos</p>
+            
+            <label>Nombre completo:</label>
+            <input type="text" id="nombre" placeholder="Tu nombre y apellido" required>
+            
+            <label>Teléfono / WhatsApp:</label>
+            <input type="tel" id="telefono" placeholder="+591 777...", required>
+            
+            <label>Dirección de entrega:</label>
+            <textarea id="direccion" placeholder="Ciudad, zona, calle, referencia" required></textarea>
+            
+            <button type="submit" class="btn" style="margin-top: 1.5rem;">✅ Enviar Pedido</button>
+            <div id="mensaje-confirmacion">¡Pedido enviado con éxito! 🎉 Te contactaremos pronto</div>
+        </form>
+    </section>
+
+    <footer>
+        <p>✨ Perfumes Elegantes | sucre, Bolivia | WhatsApp: +591 72864057</p>
+    </footer>
+
+    <script>
+        function mostrarSeccion(id) {
+            document.querySelectorAll('section').forEach(s => s.classList.add('oculto'));
+            document.getElementById(id).classList.remove('oculto');
+        }
+        
+        function agregarAlTexto(texto) {
+            mostrarSeccion('pedidos');
+            const campo = document.getElementById('detalle-pedido');
+            if (campo.value.trim() !== '') campo.value += '\n';
+            campo.value += '• ' + texto;
+            campo.focus();
+        }
+        
+        document.getElementById('form-pedido').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('mensaje-confirmacion').style.display = 'block';
+            this.reset();
+            setTimeout(() => {
+                document.getElementById('mensaje-confirmacion').style.display = 'none';
+            }, 6000);
+        });
+    </script>
+</body>
+</html>
